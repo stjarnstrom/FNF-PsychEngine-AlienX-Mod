@@ -12,7 +12,6 @@ export/*
 # Local history which shouldn't be shared.
 .history
 .ionide
-.DS_Store
 _trash
 _trash/*
 # ! means a file should be added regardless of it it gets ignored prior.
@@ -21,3 +20,4 @@ _trash/*
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+.DS_Store
