@@ -222,12 +222,20 @@ class PlayState extends MusicBeatState
 	var phillyWindow:BGSprite;
 	var phillyStreet:BGSprite;
 	var phillyTrain:BGSprite;
+	var shipLightsColors:Array<FlxColor>;
+	var shipWindow:BGSprite;
+	var shipStreet:BGSprite;
+	var shipTrain:BGSprite;
 	var blammedLightsBlack:FlxSprite;
 	var phillyWindowEvent:BGSprite;
+	var shipWindowEvent:BGSprite;
 	var trainSound:FlxSound;
 
 	var phillyGlowGradient:PhillyGlow.PhillyGlowGradient;
 	var phillyGlowParticles:FlxTypedGroup<PhillyGlow.PhillyGlowParticle>;
+
+	var shipGlowGradient:ShipGlow.ShipGlowGradient;
+	var shipGlowParticles:FlxTypedGroup<ShipGlow.ShipGlowParticle>;
 
 	var limoKillingState:Int = 0;
 	var limo:BGSprite;
@@ -412,6 +420,8 @@ class PlayState extends MusicBeatState
 		if(SONG.stage == null || SONG.stage.length < 1) {
 			switch (songName)
 			{
+				case 'intruders' | 'betrayer':
+					curStage = 'alienx';
 				case 'spookeez' | 'south' | 'monster':
 					curStage = 'spooky';
 				case 'pico' | 'blammed' | 'philly' | 'philly-nice':
@@ -556,6 +566,38 @@ class PlayState extends MusicBeatState
 				FlxG.sound.list.add(trainSound);
 
 				phillyStreet = new BGSprite('philly/street', -40, 50);
+				add(phillyStreet);
+
+			case 'alienx': //Week 3
+				if(!ClientPrefs.lowQuality) {
+					var bg:BGSprite = new BGSprite('ship/sky', -100, 0, 0.1, 0.1);
+					add(bg);
+				}
+
+				var city:BGSprite = new BGSprite('ship/city', -10, 0, 0.3, 0.3);
+				city.setGraphicSize(Std.int(city.width * 0.85));
+				city.updateHitbox();
+				add(city);
+
+				phillyLightsColors = [0xFF31A2FD, 0xFF31FD8C, 0xFFFB33F5, 0xFFFD4531, 0xFFFBA633];
+				phillyWindow = new BGSprite('ship/window', city.x, city.y, 0.3, 0.3);
+				phillyWindow.setGraphicSize(Std.int(phillyWindow.width * 0.85));
+				phillyWindow.updateHitbox();
+				add(phillyWindow);
+				phillyWindow.alpha = 0;
+
+				if(!ClientPrefs.lowQuality) {
+					var streetBehind:BGSprite = new BGSprite('ship/behindTrain', -40, 50);
+					add(streetBehind);
+				}
+
+				phillyTrain = new BGSprite('ship/train', 2000, 360);
+				add(phillyTrain);
+
+				trainSound = new FlxSound().loadEmbedded(Paths.sound('train_passes'));
+				FlxG.sound.list.add(trainSound);
+
+				phillyStreet = new BGSprite('ship/street', -40, 50);
 				add(phillyStreet);
 
 			case 'limo': //Week 4
@@ -2590,6 +2632,28 @@ class PlayState extends MusicBeatState
 				dadbattleSmokes.add(smoke);
 
 
+			case 'Ship Glow':
+				blammedLightsBlack = new FlxSprite(FlxG.width * -0.5, FlxG.height * -0.5).makeGraphic(Std.int(FlxG.width * 2), Std.int(FlxG.height * 2), FlxColor.BLACK);
+				blammedLightsBlack.visible = false;
+				insert(members.indexOf(phillyStreet), blammedLightsBlack);
+
+				phillyWindowEvent = new BGSprite('ship/window', phillyWindow.x, phillyWindow.y, 0.3, 0.3);
+				phillyWindowEvent.setGraphicSize(Std.int(phillyWindowEvent.width * 0.85));
+				phillyWindowEvent.updateHitbox();
+				phillyWindowEvent.visible = false;
+				insert(members.indexOf(blammedLightsBlack) + 1, phillyWindowEvent);
+
+
+				shipGlowGradient = new ShipGlow.ShipGlowGradient(-400, 225); //This shit was refusing to properly load FlxGradient so fuck it
+				shipGlowGradient.visible = false;
+				insert(members.indexOf(blammedLightsBlack) + 1, shipGlowGradient);
+				if(!ClientPrefs.flashing) shipGlowGradient.intendedAlpha = 0.7;
+
+				precacheList.set('ship/particle', 'image'); //precache particle image
+				shipGlowParticles = new FlxTypedGroup<ShipGlow.ShipGlowParticle>();
+				shipGlowParticles.visible = false;
+				insert(members.indexOf(shipGlowGradient) + 1, shipGlowParticles);
+
 			case 'Philly Glow':
 				blammedLightsBlack = new FlxSprite(FlxG.width * -0.5, FlxG.height * -0.5).makeGraphic(Std.int(FlxG.width * 2), Std.int(FlxG.height * 2), FlxColor.BLACK);
 				blammedLightsBlack.visible = false;
@@ -2865,6 +2929,34 @@ class PlayState extends MusicBeatState
 						{
 							particle.kill();
 							phillyGlowParticles.remove(particle, true);
+							particle.destroy();
+						}
+						--i;
+					}
+				}				
+			case 'alienx':
+				if (trainMoving)
+				{
+					trainFrameTiming += elapsed;
+
+					if (trainFrameTiming >= 1 / 24)
+					{
+						updateTrainPos();
+						trainFrameTiming = 0;
+					}
+				}
+				phillyWindow.alpha -= (Conductor.crochet / 1000) * FlxG.elapsed * 1.5;
+
+				if(shipGlowParticles != null)
+				{
+					var i:Int = shipGlowParticles.members.length-1;
+					while (i > 0)
+					{
+						var particle = shipGlowParticles.members[i];
+						if(particle.alpha < 0)
+						{
+							particle.kill();
+							shipGlowParticles.remove(particle, true);
 							particle.destroy();
 						}
 						--i;
@@ -4991,6 +5083,22 @@ class PlayState extends MusicBeatState
 				if (FlxG.random.bool(10) && fastCarCanDrive)
 					fastCarDrive();
 			case "philly":
+				if (!trainMoving)
+					trainCooldown += 1;
+
+				if (curBeat % 4 == 0)
+				{
+					curLight = FlxG.random.int(0, phillyLightsColors.length - 1, [curLight]);
+					phillyWindow.color = phillyLightsColors[curLight];
+					phillyWindow.alpha = 1;
+				}
+
+				if (curBeat % 8 == 4 && FlxG.random.bool(30) && !trainMoving && trainCooldown > 8)
+				{
+					trainCooldown = FlxG.random.int(-4, 0);
+					trainStart();
+				}
+			case "alienx":
 				if (!trainMoving)
 					trainCooldown += 1;
 

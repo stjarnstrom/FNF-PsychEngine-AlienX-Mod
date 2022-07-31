@@ -1,6 +1,6 @@
 {
-	"name": "Name",
-	"description": "Description",
+	"name": "Alien X",
+	"description": "Shapeshifting Aliens Walk Among Us; but what do they want?",
 	"restart":false,
 	"runsGlobally": false,
 	"color": [170, 0, 255]

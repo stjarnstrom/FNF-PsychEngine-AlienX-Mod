@@ -37,6 +37,8 @@ class StageData {
 		} else if(SONG.song != null) {
 			switch (SONG.song.toLowerCase().replace(' ', '-'))
 			{
+				case 'intruders' | 'betrayer':
+					stage = 'alienx';
 				case 'spookeez' | 'south' | 'monster':
 					stage = 'spooky';
 				case 'pico' | 'blammed' | 'philly' | 'philly-nice':

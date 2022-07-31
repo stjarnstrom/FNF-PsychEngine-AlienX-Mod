@@ -17,6 +17,10 @@ If you want video support on your mod, simply do `haxelib install hxCodec` on a 
 
 otherwise, you can delete the "VIDEOS_ALLOWED" Line on Project.xml
 
+
+KADE instructions: https://github.com/KadeDev/Kade-Engine/blob/stable/docs/building.md
+
+
 ## Credits:
 * Shadow Mario - Programmer
 * RiverOaken - Artist
