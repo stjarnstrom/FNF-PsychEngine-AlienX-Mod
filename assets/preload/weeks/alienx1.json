@@ -2,16 +2,16 @@
 	"songs": [
 		[
 			"Intruders",
-			"alienx1",
+			"dad",
 			[
-				126,
-				123,
-				223
+				146,
+				113,
+				253
 			]
 		],
 		[
 			"Betrayer",
-			"alienx1",
+			"dad",
 			[
 				146,
 				113,
@@ -19,9 +19,14 @@
 			]
 		]
 	],
+	"weekCharacters": [
+		"dad",
+		"bf",
+		"gf"
+	],	
 	"hiddenUntilUnlocked": false,
 	"hideFreeplay": false,
-	"weekBackground": "stage",
+	"weekBackground": "ship",
 	"difficulties": "",
 	"weekCharacters": [
 		"dad",
@@ -29,13 +34,12 @@
 		"gf"
 	],
 	"storyName": "Alien X",
-	"weekName": "Week X",
+	"weekName": "Alien X 1",
 	"freeplayColor": [
 		146,
 		113,
 		253
 	],
 	"hideStoryMode": false,
-	"weekBefore": "",
 	"startUnlocked": true
 }
