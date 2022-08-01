@@ -409,9 +409,9 @@ class TitleState extends MusicBeatState
 
 		FlxTween.tween(credTextShit, {y: credTextShit.y + 20}, 2.9, {ease: FlxEase.quadInOut, type: PINGPONG});
 
-		if (initialized)
+		//if (initialized)
 			skipIntro();
-		else
+		//else
 			initialized = true;
 
 		// credGroup.add(credTextShit);
