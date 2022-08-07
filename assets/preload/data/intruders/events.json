@@ -1,10 +1,6 @@
 {
 	"song": {
-		"speed": 2.3,
 		"stage": "ship",
-		"player1": "bf",
-		"player2": "dad",
-		"player3": null,
 		"events": [
 			[
 				46545.4545454546,
@@ -964,13 +960,6 @@
 				]
 			]
 		],
-		"notes": [],
-		"splashSkin": null,
-		"validScore": false,
-		"gfVersion": "gf",
-		"bpm": 130,
-		"arrowSkin": null,
-		"needsVoices": true,
 		"song": "Intruders"
 	}
 }
