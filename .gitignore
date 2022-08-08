@@ -21,3 +21,4 @@ _trash/*
 !.vscode/launch.json
 !.vscode/extensions.json
 .DS_Store
+.DS_Store
