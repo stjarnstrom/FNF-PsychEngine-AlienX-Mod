@@ -1,7 +1,7 @@
 {
 	"song": {
 		"player1": "bf",
-		"player2": "dad",
+		"player2": "evelyn",
 		"notes": [
 			{
 				"lengthInSteps": 16,
@@ -1904,7 +1904,7 @@
 		"gfVersion": "gf",
 		"events": [],
 		"player3": null,
-		"song": "Intruders",
+		"song": "Intruders Remix",
 		"validScore": true,
 		"needsVoices": true,
 		"stage": "ship",
