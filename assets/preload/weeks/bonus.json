@@ -1,34 +1,7 @@
 {
 	"songs": [
 		[
-			"Intruders",
-			"the-sister",
-			[
-				146,
-				113,
-				253
-			]
-		],
-		[
-			"In Our Way",
-			"dad",
-			[
-				146,
-				113,
-				253
-			]
-		],
-		[
-			"Betrayer",
-			"dad",
-			[
-				146,
-				113,
-				253
-			]
-		],
-		[
-			"Funky",
+			"Failed Experiment",
 			"dad",
 			[
 				146,
@@ -52,12 +25,12 @@
 		"gf"
 	],
 	"storyName": "Alien X",
-	"weekName": "Alien X 1",
+	"weekName": "Alien X Bonus",
 	"freeplayColor": [
 		146,
 		113,
 		253
 	],
-	"hideStoryMode": false,
+	"hideStoryMode": true,
 	"startUnlocked": true
 }
