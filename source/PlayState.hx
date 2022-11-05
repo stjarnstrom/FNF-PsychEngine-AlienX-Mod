@@ -509,30 +509,30 @@ class PlayState extends MusicBeatState
 					add(bg);
 				}
 
-				var city:BGSprite = new BGSprite('ship/city', -10, 0, 0.3, 0.3);
+				var city:BGSprite = new BGSprite('ship/ship_wo_eyes', -100, -100, 0.3, 0.3);
 				city.setGraphicSize(Std.int(city.width * 0.85));
 				city.updateHitbox();
 				add(city);
 
 				shipLightsColors = [0xFF31A2FD, 0xFF31FD8C, 0xFFFB33F5, 0xFFFD4531, 0xFFFBA633];
-				shipWindow = new BGSprite('ship/window', city.x, city.y, 0.3, 0.3);
+				shipWindow = new BGSprite('ship/ship_eyes', city.x, city.y, 0.3, 0.3);
 				shipWindow.setGraphicSize(Std.int(shipWindow.width * 0.85));
 				shipWindow.updateHitbox();
 				add(shipWindow);
 				shipWindow.alpha = 0;
 
-				if(!ClientPrefs.lowQuality) {
+				/*if(!ClientPrefs.lowQuality) {
 					var streetBehind:BGSprite = new BGSprite('ship/behindTrain', -40, 50);
 					add(streetBehind);
-				}
+				}*/
 
-				shipTrain = new BGSprite('ship/train', 2000, 360);
+				shipTrain = new BGSprite('ship/train', 2200, 360);
 				add(shipTrain);
 
 				trainSound = new FlxSound().loadEmbedded(Paths.sound('train_passes'));
 				FlxG.sound.list.add(trainSound);
 
-				shipStreet = new BGSprite('ship/street', -40, 50);
+				shipStreet = new BGSprite('ship/ship_floor', -400, -230);
 				add(shipStreet);
 
 		}
