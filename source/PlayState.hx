@@ -532,7 +532,10 @@ class PlayState extends MusicBeatState
 				trainSound = new FlxSound().loadEmbedded(Paths.sound('train_passes'));
 				FlxG.sound.list.add(trainSound);
 
-				shipStreet = new BGSprite('ship/ship_floor', -400, -230);
+				/*shipStreet = new BGSprite('ship/ship_floor', -400, -230);
+				add(shipStreet);*/
+
+				shipStreet = new BGSprite('ship/ship_foreground', -400, -350);
 				add(shipStreet);
 
 		}
