@@ -35,22 +35,26 @@
 				113,
 				253
 			]
+		],
+		[
+			"Crawler",
+			"the-sister",
+			[
+				146,
+				113,
+				253
+			]
 		]
 	],
 	"weekCharacters": [
 		"dad",
 		"bf",
-		"gf"
+		"the-sister"
 	],	
 	"hiddenUntilUnlocked": false,
 	"hideFreeplay": false,
 	"weekBackground": "ship",
 	"difficulties": "",
-	"weekCharacters": [
-		"dad",
-		"bf",
-		"gf"
-	],
 	"storyName": "Alien X",
 	"weekName": "Alien X 1",
 	"freeplayColor": [
